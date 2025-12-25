@@ -35,6 +35,8 @@ bash install.sh
 - `GIT_EMAIL`: Git邮箱
 - `SSH_KEY_TYPE`: SSH密钥类型（默认ed25519）
 - `SSH_KEY_PATH`: SSH密钥路径
+- `DOCKER_PROXY_HOST`: Docker代理地址（可选，需要先配置代理）
+- `DOCKER_PROXY_PORT`: Docker代理端口（可选，需要先配置代理）
 
 ## 特性
 
@@ -48,6 +50,25 @@ bash install.sh
 - `modules/05_git_ssh.sh`: Git和SSH配置
 - `modules/10_shell.sh`: Shell工具安装
 - `modules/15_fishros.sh`: FishROS安装（ROS开发环境）
+- `modules/20_docker_proxy.sh`: Docker代理配置（需要先配置代理服务）
+
+## Docker 代理配置
+
+如果需要配置 Docker 使用代理（例如 v2ray），可以：
+
+1. **独立运行脚本**（推荐，需要先启动代理服务）：
+```bash
+# 方式1: 直接指定代理地址和端口
+./configure_docker_proxy.sh 127.0.0.1 7890
+
+# 方式2: 在 config.env 中配置后运行
+# 编辑 config.env，设置 DOCKER_PROXY_HOST 和 DOCKER_PROXY_PORT
+./configure_docker_proxy.sh
+```
+
+2. **在 install.sh 中自动配置**：
+   - 在 `config.env` 中设置 `DOCKER_PROXY_HOST` 和 `DOCKER_PROXY_PORT`
+   - 运行 `bash install.sh` 时会自动配置（需要先启动代理服务）
 
 ## 注意事项
 
