@@ -11,8 +11,11 @@ fi
 
 # Install oh-my-zsh if not present
 OH_MY_ZSH_DIR="$HOME/.oh-my-zsh"
-if [[ ! -d "$OH_MY_ZSH_DIR" ]]; then
+OH_MY_ZSH_SCRIPT="$OH_MY_ZSH_DIR/oh-my-zsh.sh"
+if [[ ! -f "$OH_MY_ZSH_SCRIPT" ]]; then
   log "Installing oh-my-zsh"
+  # Remove incomplete installation if directory exists but script is missing
+  [[ -d "$OH_MY_ZSH_DIR" ]] && rm -rf "$OH_MY_ZSH_DIR"
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended || warn "oh-my-zsh installation failed"
 fi
 
