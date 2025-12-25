@@ -34,6 +34,10 @@ chmod 700 "$SSH_DIR"
 
 if [[ -f "$SSH_KEY_PATH" ]]; then
   ok "SSH key already exists: $SSH_KEY_PATH"
+  log "Displaying existing public key:"
+  echo "--------------------------------------------------"
+  cat "$SSH_KEY_PATH.pub"
+  echo "--------------------------------------------------"
 else
   log "Generating SSH key: type=$SSH_KEY_TYPE path=$SSH_KEY_PATH"
 

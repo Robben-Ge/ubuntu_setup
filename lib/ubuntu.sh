@@ -25,5 +25,31 @@ apt_update_once() {
 
 apt_install() {
   apt_update_once
-  sudo apt-get install -y --no-install-recommends "$@"
+  local to_install=()
+  for pkg in "$@"; do
+    if ! dpkg -l | grep -q "^ii.*$pkg "; then
+      to_install+=("$pkg")
+    else
+      log "Package $pkg already installed, skipping"
+    fi
+  done
+  if [[ ${#to_install[@]} -gt 0 ]]; then
+    sudo apt-get install -y --no-install-recommends "${to_install[@]}"
+  fi
+}
+
+apt_install_if_missing() {
+  apt_update_once
+  local to_install=()
+  for pkg in "$@"; do
+    if ! dpkg -l | grep -q "^ii.*$pkg "; then
+      to_install+=("$pkg")
+    fi
+  done
+  if [[ ${#to_install[@]} -gt 0 ]]; then
+    sudo apt-get install -y --no-install-recommends "${to_install[@]}"
+    return 0
+  else
+    return 1
+  fi
 }
