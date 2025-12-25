@@ -13,6 +13,39 @@ export EDITOR=vim
 export VISUAL=vim
 bindkey -v
 
-# ROS Humble
-[[ -f /opt/ros/humble/setup.zsh ]] && source /opt/ros/humble/setup.zsh
+# ROS setup (auto-detect installed ROS version)
+# Try to detect ROS_DISTRO from environment or find installed ROS
+if [[ -z "${ROS_DISTRO:-}" ]]; then
+  # Auto-detect ROS2 distro from /opt/ros/
+  for distro in humble foxy galactic iron jazzy rolling; do
+    if [[ -f /opt/ros/$distro/setup.zsh ]]; then
+      export ROS_DISTRO=$distro
+      break
+    fi
+  done
+  # If no ROS2 found, try ROS1
+  if [[ -z "${ROS_DISTRO:-}" ]]; then
+    for distro in noetic melodic kinetic; do
+      if [[ -f /opt/ros/$distro/setup.zsh ]]; then
+        export ROS_DISTRO=$distro
+        break
+      fi
+    done
+  fi
+fi
+
+# Source ROS setup if found
+if [[ -n "${ROS_DISTRO:-}" ]] && [[ -f /opt/ros/$ROS_DISTRO/setup.zsh ]]; then
+  source /opt/ros/$ROS_DISTRO/setup.zsh
+fi
+
+# ROS2 argcomplete for zsh (only for ROS2)
+if [[ -n "${ROS_DISTRO:-}" ]] && [[ -f /opt/ros/$ROS_DISTRO/share/ros2cli/environment/ros2-argcomplete.zsh ]]; then
+  autoload -U +X compinit && compinit
+  autoload -U +X bashcompinit && bashcompinit
+  source /opt/ros/$ROS_DISTRO/share/ros2cli/environment/ros2-argcomplete.zsh
+fi
+
+# Alias for re-initializing completion if needed
+alias init-comp="autoload -U +X compinit && compinit && autoload -U +X bashcompinit && bashcompinit && [[ -n \"\${ROS_DISTRO:-}\" ]] && [[ -f /opt/ros/\$ROS_DISTRO/share/ros2cli/environment/ros2-argcomplete.zsh ]] && source /opt/ros/\$ROS_DISTRO/share/ros2cli/environment/ros2-argcomplete.zsh"
 
