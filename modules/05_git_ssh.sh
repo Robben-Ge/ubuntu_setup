@@ -60,7 +60,8 @@ fi
 
 # ---------- ssh-agent ----------
 # Start agent if not running for current user
-if ! pgrep -u "$USER" ssh-agent >/dev/null 2>&1; then
+CURRENT_USER="${USER:-$(id -un)}"
+if ! pgrep -u "$CURRENT_USER" ssh-agent >/dev/null 2>&1; then
   log "Starting ssh-agent"
   eval "$(ssh-agent -s)" >/dev/null
 fi

@@ -16,7 +16,10 @@ source "$ROOT_DIR/lib/log.sh"
 source "$ROOT_DIR/lib/ubuntu.sh"
 
 need_cmd bash
-need_cmd sudo
+# Only check for sudo if not running as root
+if [[ "${EUID:-$(id -u)}" -ne 0 ]]; then
+  need_cmd sudo
+fi
 
 assert_ubuntu
 assert_not_root_but_sudo_ok
