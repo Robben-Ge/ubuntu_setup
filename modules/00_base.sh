@@ -7,6 +7,7 @@ apt_install \
   unzip zip tar \
   htop tree jq ripgrep fd-find \
   net-tools vim-gtk3 \
-  gnome-shell-extension-manager
+  gnome-shell-extension-manager \
+  libreoffice
 
 ok "base packages installed"
