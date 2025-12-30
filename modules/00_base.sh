@@ -6,6 +6,7 @@ apt_install \
   build-essential make cmake pkg-config \
   unzip zip tar \
   htop tree jq ripgrep fd-find \
-  net-tools vim-gtk3
+  net-tools vim-gtk3 \
+  gnome-shell-extension-manager
 
 ok "base packages installed"
