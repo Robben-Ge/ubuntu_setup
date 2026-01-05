@@ -5,6 +5,13 @@ need_cmd ssh-keygen
 need_cmd ssh-agent
 need_cmd ssh-add
 
+# ---------- Install Git LFS ----------
+apt_install git-lfs
+if command -v git-lfs &> /dev/null; then
+  git lfs install || warn "git lfs install failed"
+  log "Git LFS installed and initialized"
+fi
+
 # ---------- Git basic config ----------
 if [[ -n "${GIT_NAME:-}" ]]; then
   git config --global user.name "$GIT_NAME"
