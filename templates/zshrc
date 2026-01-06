@@ -49,7 +49,10 @@ fi
 # Alias for re-initializing completion if needed
 alias init-comp="autoload -U +X compinit && compinit && autoload -U +X bashcompinit && bashcompinit && [[ -n \"\${ROS_DISTRO:-}\" ]] && [[ -f /opt/ros/\$ROS_DISTRO/share/ros2cli/environment/ros2-argcomplete.zsh ]] && source /opt/ros/\$ROS_DISTRO/share/ros2cli/environment/ros2-argcomplete.zsh"
 
-# Fortune, cowsay, and lolcat (only in interactive shells)
-if [[ $- == *i* ]] && command -v fortune >/dev/null 2>&1 && command -v cowsay >/dev/null 2>&1 && command -v lolcat >/dev/null 2>&1; then
-  fortune | cowsay | lolcat
+# Random encouragement (low-noise)
+if (( RANDOM % 3 == 0 )); then
+  command -v fortune >/dev/null \
+  && command -v cowsay >/dev/null \
+  && command -v lolcat >/dev/null \
+  && fortune | cowsay | lolcat
 fi
