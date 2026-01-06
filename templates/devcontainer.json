@@ -1,0 +1,75 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/docker-existing-dockerfile
+{
+	// TODO: 修改项目名称
+	"name": "xynova_rl_ros",
+	
+	// TODO: 修改为你的 Docker 镜像
+	"image": "robbenge/humble_env:latest",
+	
+	"privileged": true,
+	"remoteUser": "vscode",
+	"containerUser": "vscode",
+	"updateRemoteUserUID": true,
+	
+	"mounts": [
+		{
+			"source": "/dev",
+			"target": "/dev",
+			"type": "bind"
+		},
+		{
+			"source": "/tmp/.X11-unix",
+			"target": "/tmp/.X11-unix",
+			"type": "bind"
+		}
+	],
+	
+	"containerEnv": {
+		"DISPLAY": "${localEnv:DISPLAY}",
+		// TODO: 根据需要修改 ROS 相关环境变量
+		"ROS_DOMAIN_ID": "0",
+		"ROS_DISTRO": "humble",
+		"UMASK": "0002"
+	},
+	
+	"runArgs": [
+		// TODO: 修改容器名称
+		"--name",
+		"humble_env",
+		"--network",
+		"host",
+		"--restart",
+		"unless-stopped"
+	],
+	
+	"initializeCommand": "xhost +local: > /dev/null 2>&1",
+	
+	"customizations": {
+		"vscode": {
+			"settings": {
+				"terminal.integrated.defaultProfile.linux": "zsh"
+			},
+			"extensions": [
+				// C++ language support
+				"llvm-vs-code-extensions.vscode-clangd",
+				// Python language support
+				"ms-python.vscode-pylance",
+				"ms-python.python",
+				"ms-python.debugpy",
+				// CMake language support
+				"twxs.cmake",
+				// Code spell checking
+				"streetsidesoftware.code-spell-checker",
+				// Git enhancements
+				"mhutchie.git-graph",
+				// Docker support
+				"ms-azuretools.vscode-docker",
+				// YAML support
+				"redhat.vscode-yaml"
+				// TODO: 根据需要添加其他扩展
+			]
+		}
+	}
+}
+

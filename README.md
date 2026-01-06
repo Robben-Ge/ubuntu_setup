@@ -50,7 +50,17 @@ bash install.sh
 - `modules/05_git_ssh.sh`: Git和SSH配置
 - `modules/10_shell.sh`: Shell工具安装
 - `modules/15_fishros.sh`: FishROS安装（ROS开发环境）
+- `modules/17_conda.sh`: Conda/Miniconda 安装
 - `modules/20_docker_proxy.sh`: Docker代理配置（需要先配置代理服务）
+
+## 模板文件
+
+`templates/` 目录包含可复用的配置文件模板：
+
+- `templates/zshrc`: zsh 配置文件模板
+- `templates/devcontainer.json`: VS Code DevContainer 配置模板（ROS 开发环境）
+
+使用模板时，复制到对应位置并根据项目需求修改标记为 `TODO` 的部分。
 
 ## Docker 代理配置
 
