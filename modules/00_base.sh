@@ -8,6 +8,7 @@ apt_install \
   htop tree jq ripgrep fd-find \
   net-tools vim-gtk3 \
   gnome-shell-extension-manager \
-  libreoffice
+  libreoffice \
+  fortune cowsay lolcat
 
 ok "base packages installed"
