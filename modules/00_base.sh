@@ -9,6 +9,8 @@ apt_install \
   net-tools vim-gtk3 \
   gnome-shell-extension-manager \
   libreoffice \
-  fortune cowsay lolcat
+  fortune cowsay lolcat \
+  neofetch sl \
+  btop
 
 ok "base packages installed"
