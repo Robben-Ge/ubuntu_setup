@@ -11,6 +11,7 @@ apt_install \
   libreoffice \
   fortune cowsay lolcat \
   neofetch sl \
-  btop
+  btop \
+  cheese
 
 ok "base packages installed"
