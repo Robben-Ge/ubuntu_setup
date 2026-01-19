@@ -12,6 +12,7 @@ apt_install \
   fortune cowsay lolcat \
   neofetch sl \
   btop \
-  cheese
+  cheese \
+  vlc
 
 ok "base packages installed"
