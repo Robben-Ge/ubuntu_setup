@@ -4,9 +4,16 @@ apt_install zsh tmux fzf
 
 # change default shell to zsh (idempotent)
 ZSH_BIN="$(command -v zsh)"
-if [[ "${SHELL:-}" != "$ZSH_BIN" ]]; then
-  warn "Changing default shell to zsh (may ask password)"
-  chsh -s "$ZSH_BIN" || warn "chsh failed (maybe not allowed here)"
+CURRENT_SHELL="$(getent passwd "$USER" | cut -d: -f7)"
+
+if [[ "$CURRENT_SHELL" != "$ZSH_BIN" ]]; then
+  log "Current default shell: $CURRENT_SHELL"
+  log "Changing default shell to zsh: $ZSH_BIN"
+  warn "This may ask for your password"
+  chsh -s "$ZSH_BIN" || warn "chsh failed (may need to run manually: chsh -s $(which zsh))"
+  log "Default shell changed. Please log out and log back in for changes to take effect."
+else
+  log "Default shell is already zsh: $ZSH_BIN"
 fi
 
 # Install oh-my-zsh if not present
