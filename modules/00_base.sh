@@ -9,7 +9,7 @@ apt_install \
   net-tools vim-gtk3 \
   gnome-shell-extension-manager \
   libreoffice \
-  fortune cowsay lolcat \
+  fortune-mod fortunes cowsay lolcat \
   neofetch sl \
   btop \
   cheese \
