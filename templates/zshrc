@@ -80,3 +80,6 @@ alias drmi='docker rmi'
 alias who='whoami && hostname && pwd'
 alias sys='neofetch'
 alias top='btop'
+
+# ========= Pay Respects (command correction) =========
+command -v pay-respects >/dev/null && eval "$(pay-respects zsh --alias fuck)"

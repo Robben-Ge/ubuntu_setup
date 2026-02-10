@@ -48,6 +48,14 @@ else
   log "zsh-syntax-highlighting already installed"
 fi
 
+# Install pay-respects (command correction)
+if ! command -v pay-respects >/dev/null 2>&1; then
+  log "Installing pay-respects"
+  curl -fsSL https://raw.githubusercontent.com/iffse/pay-respects/main/install.sh | sh || warn "pay-respects installation failed"
+else
+  log "pay-respects already installed"
+fi
+
 # Configure .zshrc
 ZSHRC_FILE="$HOME/.zshrc"
 # Get ROOT_DIR from parent script, or derive from script location
