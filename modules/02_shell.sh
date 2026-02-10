@@ -56,7 +56,7 @@ else
   log "pay-respects already installed"
 fi
 
-# Configure .zshrc
+# Configure .zshrc (done early so later modules e.g. conda init append to this template)
 ZSHRC_FILE="$HOME/.zshrc"
 # Get ROOT_DIR from parent script, or derive from script location
 ROOT_DIR="${ROOT_DIR:-$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)}"

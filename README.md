@@ -48,7 +48,7 @@ bash install.sh
 
 - `modules/00_base.sh`: 基础系统包安装
 - `modules/05_git_ssh.sh`: Git和SSH配置
-- `modules/10_shell.sh`: Shell工具安装
+- `modules/02_shell.sh`: Shell 工具安装（尽早写 .zshrc，后续模块在其上追加）
 - `modules/15_fishros.sh`: FishROS安装（ROS开发环境）
 - `modules/17_conda.sh`: Conda/Miniconda 安装
 - `modules/20_docker_proxy.sh`: Docker代理配置（需要先配置代理服务）
