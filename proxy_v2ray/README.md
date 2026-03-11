@@ -17,7 +17,7 @@
 docker load -i v2fly-core-latest.tar
 
 # 启动服务
-docker-compose up -d
+docker compose up -d
 ```
 
 ### 方式2：从 Docker Hub 拉取（需要网络）
@@ -25,7 +25,7 @@ docker-compose up -d
 如果没有本地镜像文件，Docker Compose 会自动从 Docker Hub 拉取：
 
 ```bash
-docker-compose up -d
+docker compose up -d
 ```
 
 ## 导出镜像
@@ -39,11 +39,11 @@ docker save v2fly/v2fly-core:latest -o v2fly-core-latest.tar
 ## 停止服务
 
 ```bash
-docker-compose down
+docker compose down
 ```
 
 ## 查看日志
 
 ```bash
-docker-compose logs -f
+docker compose logs -f
 ```

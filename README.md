@@ -85,3 +85,4 @@ bash install.sh
 - 需要sudo权限
 - 首次运行会提示输入sudo密码
 - SSH密钥生成后，公钥会显示在终端，需要手动添加到GitHub/GitLab
+- **Docker APT 源**：若系统里已添加过 Docker 官方 apt 源且 GPG 密钥过期（`apt update` 报密钥过期/EXPKEYSIG），`install.sh` 会在首次 `apt update` 前自动检测并刷新 Docker 的密钥与源配置，无需手动处理

@@ -14,6 +14,8 @@ fi
 source "$ROOT_DIR/lib/log.sh"
 # shellcheck disable=SC1091
 source "$ROOT_DIR/lib/ubuntu.sh"
+# shellcheck disable=SC1091
+source "$ROOT_DIR/lib/docker_apt_fix.sh"
 
 need_cmd bash
 # Only check for sudo if not running as root
@@ -25,6 +27,7 @@ assert_ubuntu
 assert_not_root_but_sudo_ok
 
 log "Ubuntu setup starting..."
+fix_docker_apt_key_if_needed
 apt_update_once
 
 for f in "$ROOT_DIR"/modules/*.sh; do
