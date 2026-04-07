@@ -35,8 +35,9 @@ bash install.sh
 - `GIT_EMAIL`: Git邮箱
 - `SSH_KEY_TYPE`: SSH密钥类型（默认ed25519）
 - `SSH_KEY_PATH`: SSH密钥路径
-- `DOCKER_PROXY_HOST`: Docker代理地址（可选，需要先配置代理）
-- `DOCKER_PROXY_PORT`: Docker代理端口（可选，需要先配置代理）
+- `DOCKER_PROXY_HOST` / `DOCKER_PROXY_PORT`: 可选，让 Docker 守护进程经 HTTP/HTTPS 代理拉镜像；设置后运行 `bash install.sh` 会执行 `modules/20_docker_proxy.sh`，也可单独运行 `./configure_docker_proxy.sh`
+
+若本机梯子使用 [v2rayN](https://github.com/2dust/v2rayN)，在 v2rayN 里开启「允许来自局域网的连接」并记下 **本地 HTTP 代理端口**（常见为 `127.0.0.1` 与软件里显示的端口，以实际设置为准），把 `DOCKER_PROXY_HOST` / `DOCKER_PROXY_PORT` 填成同一组地址与端口即可让 `docker pull` 等走代理。
 
 ## 特性
 
@@ -61,24 +62,6 @@ bash install.sh
 - `templates/devcontainer.json`: VS Code DevContainer 配置模板（ROS 开发环境）
 
 使用模板时，复制到对应位置并根据项目需求修改标记为 `TODO` 的部分。
-
-## Docker 代理配置
-
-如果需要配置 Docker 使用代理（例如 v2ray），可以：
-
-1. **独立运行脚本**（推荐，需要先启动代理服务）：
-```bash
-# 方式1: 直接指定代理地址和端口
-./configure_docker_proxy.sh 127.0.0.1 7890
-
-# 方式2: 在 config.env 中配置后运行
-# 编辑 config.env，设置 DOCKER_PROXY_HOST 和 DOCKER_PROXY_PORT
-./configure_docker_proxy.sh
-```
-
-2. **在 install.sh 中自动配置**：
-   - 在 `config.env` 中设置 `DOCKER_PROXY_HOST` 和 `DOCKER_PROXY_PORT`
-   - 运行 `bash install.sh` 时会自动配置（需要先启动代理服务）
 
 ## 注意事项
 
