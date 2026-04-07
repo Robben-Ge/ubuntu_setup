@@ -37,7 +37,7 @@ bash install.sh
 - `SSH_KEY_PATH`: SSH密钥路径
 - `DOCKER_PROXY_HOST` / `DOCKER_PROXY_PORT`: 可选，让 Docker 守护进程经 HTTP/HTTPS 代理拉镜像；设置后运行 `bash install.sh` 会执行 `modules/20_docker_proxy.sh`，也可单独运行 `./configure_docker_proxy.sh`
 
-若本机梯子使用 [v2rayN](https://github.com/2dust/v2rayN)，在 v2rayN 里开启「允许来自局域网的连接」并记下 **本地 HTTP 代理端口**（常见为 `127.0.0.1` 与软件里显示的端口，以实际设置为准），把 `DOCKER_PROXY_HOST` / `DOCKER_PROXY_PORT` 填成同一组地址与端口即可让 `docker pull` 等走代理。
+若本机梯子使用 [v2rayN](https://github.com/2dust/v2rayN)，在 v2rayN 里开启「允许来自局域网的连接」并记下 **本地代理端口**（常见为 `127.0.0.1` 与软件里显示的端口；若为 **混合端口**，HTTP 与 SOCKS 常是同一端口，以实际设置为准）。把 `DOCKER_PROXY_HOST` / `DOCKER_PROXY_PORT` 填成该地址与端口即可让 `docker pull` 等走 HTTP 代理。SSH 走代理时可用 `ncat` 的 `--proxy-type http` 或同端口的 `--proxy-type socks5`，与入站协议一致即可。
 
 ## 特性
 
